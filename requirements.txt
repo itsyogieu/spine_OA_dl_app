@@ -2,7 +2,7 @@ streamlit==1.28.0
 tensorflow==2.15.0
 numpy==1.23.3
 pandas==1.5.0
-matplotlib==3.6.0
+matplotlib==3.7.1
 seaborn==0.11.2
 scikit-learn==1.1.2
 pillow==9.3.0
