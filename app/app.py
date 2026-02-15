@@ -4,6 +4,8 @@ import numpy as np
 import streamlit as st
 import tensorflow as tf
 from PIL import Image
+import gdown
+import os
 
 
 def make_gradcam_heatmap(grad_model, img_array, pred_index=None):
@@ -60,14 +62,17 @@ class_names = ["Healthy", "Doubtful", "Minimal", "Moderate", "Severe"]
 # Load the trained model
 @st.cache_resource
 def load_model():
-    """Load the pre-trained Xception model"""
-    try:
-        model = tf.keras.models.load_model("./src/models/model_Xception_spine_ft.hdf5")
-        return model
-    except:
-        st.error("⚠️ Model file not found! Please ensure 'model_Xception_spine_ft.hdf5' is in src/models/")
-        st.info("You can train your own model using the notebooks in src/ folder")
-        return None
+    model_path = "model_Xception_spine_ft.hdf5"
+
+    # Google Drive direct download link
+    url = "https://drive.google.com/uc?id=1oDI-dRy-Vq_m4IK44eAUXGH-ctPwbgJL"
+
+    if not os.path.exists(model_path):
+        st.info("📥 Downloading model from Google Drive...")
+        gdown.download(url, model_path, quiet=False)
+
+    model = tf.keras.models.load_model(model_path)
+    return model
 
 model = load_model()
 target_size = (224, 224)
