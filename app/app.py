@@ -1,4 +1,4 @@
-import matplotlib.cm as cm
+from matplotlib import cm
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
