@@ -1,11 +1,31 @@
+"""Spine Degeneration Analysis App"""
+import sys
+import subprocess
+import os
+
+# Install TensorFlow at runtime (using 2.17.0 which has better Python 3.13 support)
+try:
+    import tensorflow as tf
+    print(f"✅ TensorFlow {tf.__version__} already installed")
+except ImportError:
+    print("📥 Installing TensorFlow 2.17.0...")
+    subprocess.check_call([
+        sys.executable, "-m", "pip", "install", 
+        "tensorflow==2.17.0",
+        "--no-cache-dir"
+    ])
+    import tensorflow as tf
+    print(f"✅ TensorFlow {tf.__version__} installed successfully")
+
+# Now import the rest of your dependencies
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
-import tensorflow as tf
 from PIL import Image
 import gdown
-import os
+
+# ... rest of your existing code (keep everything else exactly the same) ...
 
 
 def make_gradcam_heatmap(grad_model, img_array, pred_index=None):
