@@ -1,12 +1,21 @@
+import sys
+import subprocess
+import os
+
+# Install TensorFlow at runtime if not already installed
+try:
+    import tensorflow as tf
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "tensorflow==2.15.0"])
+    import tensorflow as tf
+
+# Rest of your imports
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
-import tensorflow as tf
 from PIL import Image
 import gdown
-import os
-
 
 def make_gradcam_heatmap(grad_model, img_array, pred_index=None):
     """Generate Grad-CAM heatmap for model explainability"""
