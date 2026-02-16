@@ -1,15 +1,23 @@
+"""Spine Degeneration Analysis App"""
 import sys
 import subprocess
 import os
 
-# Install TensorFlow at runtime if not already installed
+# Install TensorFlow at runtime (using 2.17.0 which has better Python 3.13 support)
 try:
     import tensorflow as tf
+    print(f"✅ TensorFlow {tf.__version__} already installed")
 except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "tensorflow==2.15.0"])
+    print("📥 Installing TensorFlow 2.17.0...")
+    subprocess.check_call([
+        sys.executable, "-m", "pip", "install", 
+        "tensorflow==2.17.0",
+        "--no-cache-dir"
+    ])
     import tensorflow as tf
+    print(f"✅ TensorFlow {tf.__version__} installed successfully")
 
-# Rest of your imports
+# Now import the rest of your dependencies
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
