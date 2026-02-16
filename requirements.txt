@@ -1,5 +1,5 @@
 streamlit==1.28.0
-tensorflow==2.20.0
+tensorflow==2.18.0  # Compatible with protobuf<5
 numpy>=1.26.0
 pandas
 matplotlib
@@ -8,4 +8,4 @@ scikit-learn
 pillow
 opencv-python-headless
 gdown
-protobuf>=4
+protobuf>=3.20,<5  # Explicitly set the range
